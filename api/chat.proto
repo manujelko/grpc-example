@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "github.com/manujelko/grpc-examples/pkg/chat";
+
+service SimpleChat {
+    rpc Ping(PingRequest) returns (PingResponse) {}
+    rpc UploadMessages(stream Message) returns (UploadStatus) {}
+    rpc NewsTicker(TickerRequest) returns (stream NewsMessage) {}
+    rpc EchoChat(stream ChatMessage) returns (stream ChatMessage) {}
+}
+
+message PingRequest {
+    string message = 1;
+}
+
+message PingResponse {
+    string message = 1;
+}
+
+message Message {
+    string text = 1;
+}
+
+message UploadStatus {
+    string status = 1;
+}
+
+message TickerRequest {
+    int32 number_of_messages = 1;
+}
+
+message NewsMessage {
+    string news_text = 1;
+}
+
+message ChatMessage {
+    string text = 1;
+}
